@@ -63,5 +63,8 @@ describe("Calcula el impuesto en en las categorías", () => {
     const resultado1 = mostrar(5, 1090, "TX", "Electronicos");
     expect(resultado1).toContain("Impuesto por categoría (4.00%): +$218");
   });
-  
+  it("Categoria Vestimenta", () => {
+    const resultado1 = mostrar(120, 90, "TX", "Vestimenta");
+    expect(resultado1).toContain("Impuesto por categoría (2.00%): +$216");
+  });
 });

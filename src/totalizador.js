@@ -64,6 +64,7 @@ function obtener_Porcentaje_Impuesto_Categoria(categoria) {
     "Material escritorio":  0,
     "Muebles": 0.03,
     "Electronicos": 0.04,
+    "Vestimenta": 0.02,
   };
   return impuestos[categoria] || 0;
 }
