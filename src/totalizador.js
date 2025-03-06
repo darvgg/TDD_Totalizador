@@ -15,7 +15,12 @@ function obtener_porcentaje_impuesto_estado(cod_estado){
     case "NV":
       porcentaje_impuesto_estado = 0.08;
       break;
-
+    case "UT":
+      porcentaje_impuesto_estado = 0.0665;
+     break;
+    case "TX":
+      porcentaje_impuesto_estado = 0.0625;
+     break;
   }
   return porcentaje_impuesto_estado;
 }
