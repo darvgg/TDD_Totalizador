@@ -57,23 +57,58 @@ function calcular_descuento(precio_neto){
   return parseFloat(descuento.toFixed(2));
 }
 
-function mostrar(cantidad,precio,cod_estado){
+function obtener_Porcentaje_Impuesto_Categoria(categoria) {
+  const impuestos = {
+    "Alimentos": 0,
+  };
+  return impuestos[categoria] || 0;
+}
+
+function calcular_Impuesto_Categoria(precio, categoria) {
+  let porcentaje_impuesto_categoria = obtener_Porcentaje_Impuesto_Categoria(categoria);
+  let impuesto = precio*porcentaje_impuesto_categoria;
+  return parseFloat(impuesto.toFixed(2));
+}
+
+function porcentaje_descuento_categoria(categoria){
+  const descuento = {
+    "Alimentos": 0.02,
+
+  };
+  return descuento[categoria] || 0;
+}
+
+function calcular_descuento_categoria (categoria){
+
+}
+
+function mostrar(cantidad,precio,cod_estado, categoria){
   let precio_n = obtener_precioNeto(cantidad,precio);
+
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
-  let impuesto= calcular_impuesto_estado(precio_n,cod_estado);
-  let precio_con_impuesto = precio_n + impuesto;
+  let impuesto_estado= calcular_impuesto_estado(precio_n,cod_estado);
+
+  let porcentaje_impuesto_categoria = obtener_Porcentaje_Impuesto_Categoria(categoria);
+  let impuesto_categoria = calcular_Impuesto_Categoria(precio_n, categoria);
+  
   let porcentaje_descuento = obtener_porcentaje_descuento(precio_n);
   let descuento = calcular_descuento(precio_n);
-  let precio_con_descuento= precio_con_impuesto - descuento;
 
-  let mostrar_p = "La cantidad es: " + cantidad  + "<br>" + 
-  "El precio por unidad es: " + precio + "<br>" +
-  "Codigo de estado es: " + cod_estado + "<br>"+
-  "El precio neto sera de (" + cantidad + "*"+ precio + "$): " + precio_n+"$" + "<br>" +
-  "Descuento (%" + (porcentaje_descuento*100) + "): " + descuento + "<br>"+
-  "Impuesto para "+ cod_estado+"(%"+(porcentaje_impuesto_estado*100)+"): "+impuesto+"<br>"+
-  "Precio total (descuento e impuesto): "+ precio_con_descuento;
+  let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
+  let precio_total= precio_con_impuestos - descuento;
+  
+  let mostrar_p = `
+    La cantidad es: ${cantidad} <br>
+    El precio por unidad es: ${precio} <br>
+    Categoria del item: ${categoria} <br>
+    Codigo de estado es: ${cod_estado} <br>
+    Precio neto (${cantidad} * $${precio.toFixed(2)}): $${precio_n.toFixed(2)}<br>
+    Impuesto para ${cod_estado} (${(porcentaje_impuesto_estado * 100).toFixed(2)}%): +$${impuesto_estado}<br>
+    Impuesto por categoría (${(porcentaje_impuesto_categoria* 100).toFixed(2)}%): +$${impuesto_categoria}<br>
+    Descuento (${(porcentaje_descuento* 100).toFixed(2)}%): -$${descuento}<br>
+    Precio total (con descuentos e impuestos): $${precio_total.toFixed(2)}<br>
+  `
   return mostrar_p; 
 }
 
-export {precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar};
+export {obtener_precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar};

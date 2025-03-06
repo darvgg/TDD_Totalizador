@@ -1,4 +1,4 @@
-import { obtener_precioNeto, calcular_impuesto_estado,calcular_descuento} from "./totalizador.js";
+import { mostrar, obtener_precioNeto, calcular_impuesto_estado,calcular_descuento} from "./totalizador.js";
 
 describe("Mostrara el precio neto del producto", () => {
   it("Muestra la cantidad del producto ingresado", () => {
@@ -39,5 +39,12 @@ describe ("Mostrar el descuento segun el precio neto",()=>{
   });
   it("Muestra el descuento correspondiente a 30000$",()=>{
     expect(calcular_descuento(30000)).toEqual(4500);
+  });
+});
+
+describe("Calcula el impuesto en en las categorías", () => {
+  it("Categoria Alimentos", () => {
+    const resultado1 = mostrar(10, 5, "CA", "Alimentos");
+    expect(resultado1).toContain("Impuesto por categoría (0.00%): +$0");
   });
 });
