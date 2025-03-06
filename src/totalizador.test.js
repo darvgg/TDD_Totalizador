@@ -51,4 +51,8 @@ describe("Calcula el impuesto en en las categorías", () => {
     const resultado1 = mostrar(20, 5, "AL", "Bebidas Alcoholicas");
     expect(resultado1).toContain("Impuesto por categoría (7.00%): +$7");
   });
+  it("Categoria Material Escritorio", () => {
+    const resultado1 = mostrar(30, 7, "NV", "Material Escritorio");
+    expect(resultado1).toContain("Impuesto por categoría (0.00%): +$0");
+  });
 });
