@@ -62,6 +62,7 @@ function obtener_Porcentaje_Impuesto_Categoria(categoria) {
     "Alimentos": 0,
     "Bebidas Alcoholicas": 0.07,
     "Material escritorio":  0,
+    "Muebles": 0.03,
   };
   return impuestos[categoria] || 0;
 }
