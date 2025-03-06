@@ -67,4 +67,8 @@ describe("Calcula el impuesto en en las categorías", () => {
     const resultado1 = mostrar(120, 90, "TX", "Vestimenta");
     expect(resultado1).toContain("Impuesto por categoría (2.00%): +$216");
   });
+  it("Categoria Varios", () => {
+    const resultado1 = mostrar(140, 64.50, "UT", "Varios");
+    expect(resultado1).toContain("Impuesto por categoría (0.00%): +$0");
+  });
 });
