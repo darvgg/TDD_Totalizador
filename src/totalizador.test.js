@@ -72,3 +72,11 @@ describe("Calcula el impuesto en en las categorías", () => {
     expect(resultado1).toContain("Impuesto por categoría (0.00%): +$0");
   });
 });
+
+describe("Calcula el Descuento en en las categorías", () => {
+  it("Categoria Alimentos", () => {
+    const resultado1 = mostrar(10, 5, "CA", "Alimentos");
+    expect(resultado1).toContain("Descuento Categoria(2.00%): -$1");
+  });
+ 
+});
