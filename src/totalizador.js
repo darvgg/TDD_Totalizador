@@ -36,6 +36,9 @@ function obtener_porcentaje_descuento(precio_neto){
   if (precio_neto>=1000 && precio_neto<3000){
     porcentaje_descuento=0.03;
   }
+  else if (precio_neto>=3000 && precio_neto<7000){
+    porcentaje_descuento=0.05;
+  }
   return porcentaje_descuento;
 }
 
