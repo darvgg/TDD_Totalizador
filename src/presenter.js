@@ -11,7 +11,7 @@ form.addEventListener("submit", (event) => {
 
   const cantItem = Number.parseFloat(cant_item.value);
   const precioItem = Number.parseFloat(precio_item.value);
-  const estado = estado_select.value;
+  const cod_estado = estado_select.value;
 
-  div.innerHTML = "<p>" + mostrar(cantItem, precioItem) + "</p>";
+  div.innerHTML = "<p>" + mostrar(cantItem, precioItem,cod_estado) + "</p>";
 });
