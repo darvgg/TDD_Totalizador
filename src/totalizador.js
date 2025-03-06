@@ -12,6 +12,10 @@ function obtener_porcentaje_impuesto_estado(cod_estado){
     case "AL":
       porcentaje_impuesto_estado = 0.04;
       break;
+    case "NV":
+      porcentaje_impuesto_estado = 0.08;
+      break;
+
   }
   return porcentaje_impuesto_estado;
 }

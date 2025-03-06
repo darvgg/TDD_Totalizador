@@ -13,4 +13,7 @@ describe("Mostrara el impuesto segun el estado", () => {
   it("Muestra el impuesto segun el estado de AL", () => {
     expect(calcular_impuesto_estado(10,"AL")).toEqual(0.4);
   });
+  it("Muestra el impuesto segun el estado de NV", () => {
+    expect(calcular_impuesto_estado(10,"NV")).toEqual(0.8);
+  });
 });
