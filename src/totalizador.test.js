@@ -47,4 +47,8 @@ describe("Calcula el impuesto en en las categorías", () => {
     const resultado1 = mostrar(10, 5, "CA", "Alimentos");
     expect(resultado1).toContain("Impuesto por categoría (0.00%): +$0");
   });
+  it("Categoria Bebidas Alcoholicas", () => {
+    const resultado1 = mostrar(20, 5, "AL", "Bebidas Alcoholicas");
+    expect(resultado1).toContain("Impuesto por categoría (7.00%): +$7");
+  });
 });

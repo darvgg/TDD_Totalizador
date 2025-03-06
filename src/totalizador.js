@@ -60,6 +60,8 @@ function calcular_descuento(precio_neto){
 function obtener_Porcentaje_Impuesto_Categoria(categoria) {
   const impuestos = {
     "Alimentos": 0,
+    "Bebidas Alcoholicas": 0.07,
+
   };
   return impuestos[categoria] || 0;
 }
