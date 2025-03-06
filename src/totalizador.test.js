@@ -31,4 +31,7 @@ describe ("Mostrar el descuento segun el precio neto",()=>{
   it("Muestra el descuento correspondiente a 3000$",()=>{
     expect(calcular_descuento(3000)).toEqual(150);
   });
+  it("Muestra el descuento correspondiente a 3000$",()=>{
+    expect(calcular_descuento(7000)).toEqual(490);
+  });
 });
