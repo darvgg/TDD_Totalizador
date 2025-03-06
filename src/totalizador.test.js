@@ -59,4 +59,9 @@ describe("Calcula el impuesto en en las categorías", () => {
     const resultado1 = mostrar(35, 600, "UT", "Muebles");
     expect(resultado1).toContain("Impuesto por categoría (3.00%): +$630");
   });
+  it("Categoria Electronicos", () => {
+    const resultado1 = mostrar(5, 1090, "TX", "Electronicos");
+    expect(resultado1).toContain("Impuesto por categoría (4.00%): +$218");
+  });
+  
 });
