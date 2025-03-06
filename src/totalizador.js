@@ -9,6 +9,9 @@ function obtener_porcentaje_impuesto_estado(cod_estado){
     case "CA":
       porcentaje_impuesto_estado = 0.0825;
       break;
+    case "AL":
+      porcentaje_impuesto_estado = 0.04;
+      break;
   }
   return porcentaje_impuesto_estado;
 }

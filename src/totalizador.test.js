@@ -7,7 +7,10 @@ describe("Mostrara el precio neto del producto", () => {
 });
 
 describe("Mostrara el impuesto segun el estado", () => {
-  it("Muestra la cantidad del producto ingresado", () => {
+  it("Muestra el impuesto segun el estado de CA", () => {
     expect(calcular_impuesto_estado(10,"CA")).toEqual(0.83);
+  });
+  it("Muestra el impuesto segun el estado de AL", () => {
+    expect(calcular_impuesto_estado(10,"AL")).toEqual(0.4);
   });
 });
