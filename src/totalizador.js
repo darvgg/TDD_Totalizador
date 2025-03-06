@@ -1,4 +1,4 @@
-function precioNeto(a, b) {
+function obtener_precioNeto(a, b) {
   let precio = a * b;
   return parseFloat(precio.toFixed(2)); 
 }
@@ -32,7 +32,7 @@ function calcular_impuesto_estado(precio_n,cod_estado){
 }
 
 function obtener_porcentaje_descuento(precio_neto){
-  let porcentaje_descuento;
+  let porcentaje_descuento = 0;
   if (precio_neto>=1000 && precio_neto<3000){
     porcentaje_descuento=0.03;
   }
@@ -58,7 +58,7 @@ function calcular_descuento(precio_neto){
 }
 
 function mostrar(cantidad,precio,cod_estado){
-  let precio_n = precio_neto(cantidad,precio);
+  let precio_n = obtener_precioNeto(cantidad,precio);
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
   let impuesto= calcular_impuesto_estado(precio_n,cod_estado);
   let precio_con_impuesto = precio_n + impuesto;

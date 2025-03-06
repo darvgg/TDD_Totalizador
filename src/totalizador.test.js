@@ -1,8 +1,8 @@
-import { precioNeto, calcular_impuesto_estado,calcular_descuento} from "./totalizador.js";
+import { obtener_precioNeto, calcular_impuesto_estado,calcular_descuento} from "./totalizador.js";
 
 describe("Mostrara el precio neto del producto", () => {
   it("Muestra la cantidad del producto ingresado", () => {
-    expect(precioNeto(7,5)).toEqual(35);
+    expect(obtener_precioNeto(7,5)).toEqual(35);
   });
 });
 

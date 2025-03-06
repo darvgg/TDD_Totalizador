@@ -1,4 +1,4 @@
-import { mostrar, precio_neto } from "./totalizador";
+import { mostrar} from "./totalizador";
 
 const cant_item = document.querySelector("#primer-numero");
 const precio_item = document.querySelector("#segundo-numero");
