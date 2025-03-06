@@ -70,7 +70,7 @@ function mostrar(cantidad,precio,cod_estado){
   "El precio por unidad es: " + precio + "<br>" +
   "Codigo de estado es: " + cod_estado + "<br>"+
   "El precio neto sera de (" + cantidad + "*"+ precio + "$): " + precio_n+"$" + "<br>" +
-  "Descuento (" + (porcentaje_descuento*100) + "): " + descuento + "<br>"+
+  "Descuento (%" + (porcentaje_descuento*100) + "): " + descuento + "<br>"+
   "Impuesto para "+ cod_estado+"(%"+(porcentaje_impuesto_estado*100)+"): "+impuesto+"<br>"+
   "Precio total (descuento e impuesto): "+ precio_con_descuento;
   return mostrar_p; 
