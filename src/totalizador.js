@@ -35,12 +35,14 @@ function mostrar(cantidad,precio,cod_estado){
   let precio_n = precio_neto(cantidad,precio);
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
   let impuesto= calcular_impuesto_estado(precio_n,cod_estado);
-
+  let precio_con_impuesto = precio_n + impuesto;
   let mostrar_p = "La cantidad es: " + cantidad  + "<br>" + 
   "El precio por unidad es: " + precio + "<br>" +
   "Codigo de estado es: " + cod_estado + "<br>"+
   "El precio neto sera de (" + cantidad + "*"+ precio + "$): " + precio_n+"$" + "<br>" +
   "Impuesto para "+cod_estado+"(%"+(porcentaje_impuesto_estado*100)+"): "+impuesto;
+  "Impuesto para "+cod_estado+"(%"+(porcentaje_impuesto_estado*100)+"): "+impuesto+"<br>"+
+  "Precio total (+impuesto): "+precio_con_impuesto;
   return mostrar_p; 
 }
 
