@@ -1,4 +1,4 @@
-import { precioNeto, calcular_impuesto_estado } from "./totalizador.js";
+import { precioNeto, calcular_impuesto_estado,calcular_descuento} from "./totalizador.js";
 
 describe("Mostrara el precio neto del producto", () => {
   it("Muestra la cantidad del producto ingresado", () => {
@@ -21,5 +21,11 @@ describe("Mostrara el impuesto segun el estado", () => {
   });
   it("Muestra el impuesto segun el estado de TX", () => {
     expect(calcular_impuesto_estado(10,"TX")).toEqual(0.63);
+  });
+});
+
+describe ("Mostrar el descuento segun el precio neto",()=>{
+  it("Muestra el descuento correspondiente a 1000$",()=>{
+    expect(calcular_descuento(1000)).toEqual(30);
   });
 });
