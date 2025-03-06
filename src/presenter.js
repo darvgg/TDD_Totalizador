@@ -1,15 +1,17 @@
-import sumar from "./sumador";
+import { mostrar, precio_neto } from "./totalizador";
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
+const cant_item = document.querySelector("#primer-numero");
+const precio_item = document.querySelector("#segundo-numero");
+const form = document.querySelector("#totalizador-form");
 const div = document.querySelector("#resultado-div");
+const estado_select = document.querySelector("#estados-Select")
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
+  const cantItem = Number.parseFloat(cant_item.value);
+  const precioItem = Number.parseFloat(precio_item.value);
+  const estado = estado_select.value;
 
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+  div.innerHTML = "<p>" + mostrar(cantItem, precioItem) + "</p>";
 });
