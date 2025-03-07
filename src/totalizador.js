@@ -139,44 +139,68 @@ function calcular_descuento_Cliente(precio_neto, tipo_cliente){
   return parseFloat((precio_neto*porcentaje_descuento_cliente).toFixed(2));
 }
 
-function mostrar(cantidad,precio,cod_estado, categoria, peso_item, tipo_cliente){
-  let precio_n = obtener_precioNeto(cantidad,precio);
+function calcular_descuento_recurrente(precio_neto, categoria) {
+  if (categoria === "Alimentos" && precio_neto > 3000) {
+    return 100;
+  }
+  return 0;
+}
+
+// Nueva función para calcular el descuento de cliente Especial
+function calcular_descuento_especial(precio_neto, categoria) {
+  if (categoria === "Electronicos" && precio_neto > 7000) {
+    return 200;
+  }
+  return 0;
+}
+
+function mostrar(cantidad, precio, cod_estado, categoria, peso_item, tipo_cliente) {
+  let precio_n = obtener_precioNeto(cantidad, precio);
   let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
-  let precio_envio = calcular_Costo_Envio(cantidad,peso_item);
-  //Calcula segun el estado
+  let precio_envio = calcular_Costo_Envio(cantidad, peso_item);
+
+  // Calcula según el estado
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
-  let impuesto_estado= calcular_impuesto_estado(precio_n,cod_estado);
-  //Calcula segun la categoria
+  let impuesto_estado = calcular_impuesto_estado(precio_n, cod_estado);
+
+  // Calcula según la categoría
   let porcentaje_impuesto_categoria = obtener_Porcentaje_Impuesto_Categoria(categoria);
   let impuesto_categoria = calcular_Impuesto_Categoria(precio_n, categoria);
 
   let porcentaje_descuento_categoria = obtener_porcentaje_descuento_categoria(categoria);
-  let descuento_categoria = calcular_descuento_categoria(precio_n,categoria);
-  //Descuento segun el precio neto
+  let descuento_categoria = calcular_descuento_categoria(precio_n, categoria);
+
+  // Descuento según el precio neto
   let porcentaje_descuento = obtener_porcentaje_descuento(precio_n);
   let descuento = calcular_descuento(precio_n);
-  //Descuento segun el tipo de cliente
+
+  // Descuento según el tipo de cliente
   let porcentaje_descuento_cliente = obtener_Porcentaje_Descuento_Cliente(tipo_cliente);
-  let descuento_cliente = calcular_descuento_Cliente(precio_n,tipo_cliente);
+  let descuento_cliente = calcular_descuento_Cliente(precio_n, tipo_cliente);
+
+  // Descuentos adicionales para clientes Recurrentes y Especiales
+  let descuento_recurrente = calcular_descuento_recurrente(precio_n, categoria);
+  let descuento_especial = calcular_descuento_especial(precio_n, categoria);
 
   let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
-  let precio_total= precio_con_impuestos + precio_envio - descuento - descuento_categoria - descuento_cliente;
-  
+  let precio_total = precio_con_impuestos + precio_envio - descuento - descuento_categoria - descuento_cliente - descuento_recurrente - descuento_especial;
+
   let mostrar_p = `
     La cantidad es: ${cantidad} <br>
     El precio por unidad es: ${precio} <br>
-    Categoria del item: ${categoria} <br>
-    Codigo de estado es: ${cod_estado} <br>
+    Categoría del item: ${categoria} <br>
+    Código de estado es: ${cod_estado} <br>
     Precio neto del producto: (${cantidad} * $${precio.toFixed(2)}): $${precio_n.toFixed(2)}<br>
-    Precio del costo de envio (${pesoVolumetrico}kg.): +$${precio_envio}<br>
-    Impuesto para ${cod_estado} (${(porcentaje_impuesto_estado * 100).toFixed(2)}%): +$${impuesto_estado}<br>
-    Impuesto por categoría (${(porcentaje_impuesto_categoria* 100).toFixed(2)}%): +$${impuesto_categoria}<br>
-    Descuento (${(porcentaje_descuento* 100).toFixed(2)}%): -$${descuento}<br>
-    Descuento Categoria (${(porcentaje_descuento_categoria* 100).toFixed(2)}%): -$${descuento_categoria}<br>
-    Descuento por Tipo de Cliente ${tipo_cliente} (${(porcentaje_descuento_cliente*100).toFixed(2)}%): -$${descuento_cliente}<br>
+    Precio del costo de envio (${pesoVolumetrico}kg.): +$${precio_envio.toFixed(2)}<br>
+    Impuesto para ${cod_estado} (${(porcentaje_impuesto_estado * 100).toFixed(2)}%): +$${impuesto_estado.toFixed(2)}<br>
+    Impuesto por categoría (${(porcentaje_impuesto_categoria * 100).toFixed(2)}%): +$${impuesto_categoria.toFixed(2)}<br>
+    Descuento (${(porcentaje_descuento * 100).toFixed(2)}%): -$${descuento.toFixed(2)}<br>
+    Descuento Categoria (${(porcentaje_descuento_categoria * 100).toFixed(2)}%): -$${descuento_categoria.toFixed(2)}<br>
+    Descuento por Tipo de Cliente ${tipo_cliente} (${(porcentaje_descuento_cliente * 100).toFixed(2)}%): -$${descuento_cliente.toFixed(2)}<br>
+    Descuento adicional para Cliente Recurrente: -$${descuento_recurrente.toFixed(2)}<br>
+    Descuento adicional para Cliente Especial: -$${descuento_especial.toFixed(2)}<br>
     Precio total (con descuentos e impuestos): $${precio_total.toFixed(2)}<br>
-  `
-  return mostrar_p; 
+  `;
+  return mostrar_p;
 }
-
-export {obtener_precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar, calcular_Peso_Volumetrico,calcular_descuento_Cliente};
+export { obtener_precioNeto, calcular_impuesto_estado, calcular_descuento, mostrar, calcular_Peso_Volumetrico, calcular_descuento_Cliente,calcular_descuento_recurrente, calcular_descuento_especial}

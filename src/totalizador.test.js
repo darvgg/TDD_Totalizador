@@ -1,43 +1,43 @@
-import { mostrar, obtener_precioNeto, calcular_impuesto_estado,calcular_descuento, calcular_Peso_Volumetrico, calcular_descuento_Cliente} from "./totalizador.js";
+import { mostrar, obtener_precioNeto, calcular_impuesto_estado, calcular_descuento, calcular_Peso_Volumetrico, calcular_descuento_Cliente, calcular_descuento_recurrente, calcular_descuento_especial } from "./totalizador.js";
 
 describe("Calculara el precio neto del producto", () => {
   it("Calcula la cantidad del producto ingresado", () => {
-    expect(obtener_precioNeto(7,5)).toEqual(35);
+    expect(obtener_precioNeto(7, 5)).toEqual(35);
   });
 });
 
 describe("Mostrara el impuesto segun el estado", () => {
   it("Muestra el impuesto segun el estado de CA", () => {
-    expect(calcular_impuesto_estado(10,"CA")).toEqual(0.83);
+    expect(calcular_impuesto_estado(10, "CA")).toEqual(0.83);
   });
   it("Muestra el impuesto segun el estado de AL", () => {
-    expect(calcular_impuesto_estado(10,"AL")).toEqual(0.4);
+    expect(calcular_impuesto_estado(10, "AL")).toEqual(0.4);
   });
   it("Muestra el impuesto segun el estado de NV", () => {
-    expect(calcular_impuesto_estado(10,"NV")).toEqual(0.8);
+    expect(calcular_impuesto_estado(10, "NV")).toEqual(0.8);
   });
   it("Muestra el impuesto segun el estado de UT", () => {
-    expect(calcular_impuesto_estado(10,"UT")).toEqual(0.67);
+    expect(calcular_impuesto_estado(10, "UT")).toEqual(0.67);
   });
   it("Muestra el impuesto segun el estado de TX", () => {
-    expect(calcular_impuesto_estado(10,"TX")).toEqual(0.63);
+    expect(calcular_impuesto_estado(10, "TX")).toEqual(0.63);
   });
 });
 
-describe ("Mostrar el descuento segun el precio neto",()=>{
-  it("Muestra el descuento correspondiente a 1000$",()=>{
+describe("Mostrar el descuento segun el precio neto", () => {
+  it("Muestra el descuento correspondiente a 1000$", () => {
     expect(calcular_descuento(1000)).toEqual(30);
   });
-  it("Muestra el descuento correspondiente a 3000$",()=>{
+  it("Muestra el descuento correspondiente a 3000$", () => {
     expect(calcular_descuento(3000)).toEqual(150);
   });
-  it("Muestra el descuento correspondiente a 7000$",()=>{
+  it("Muestra el descuento correspondiente a 7000$", () => {
     expect(calcular_descuento(7000)).toEqual(490);
   });
-  it("Muestra el descuento correspondiente a 10000$",()=>{
+  it("Muestra el descuento correspondiente a 10000$", () => {
     expect(calcular_descuento(10000)).toEqual(1000);
   });
-  it("Muestra el descuento correspondiente a 30000$",()=>{
+  it("Muestra el descuento correspondiente a 30000$", () => {
     expect(calcular_descuento(30000)).toEqual(4500);
   });
 });
@@ -106,7 +106,7 @@ describe("Calcula el Descuento en en las categorías", () => {
 
 describe("Calculara el peso volumetrico del envio", () => {
   it("Calcula el peso volumetrico del envio", () => {
-    expect(calcular_Peso_Volumetrico(7,5)).toEqual(35);
+    expect(calcular_Peso_Volumetrico(7, 5)).toEqual(35);
   });
 });
 
@@ -114,7 +114,7 @@ describe("Mostrara el costo del envio", () => {
   it("Peso entre 0 a 10 kilos", () => {
     const resultado1 = mostrar(10, 5, "CA", "Alimentos", 0.15);
     expect(resultado1).toContain("Precio del costo de envio (1.5kg.): +$0");
-  });  
+  });
   it("Peso entre 11 a 20 kilos", () => {
     const resultado1 = mostrar(100, 15, "TX", "Bebidas Alcoholicas", 0.2);
     expect(resultado1).toContain("Precio del costo de envio (20kg.): +$3.5");
@@ -153,5 +153,44 @@ describe("Calculara descuento por el tipo de cliente", () => {
   });
   it("Calcula el descuento por el tipo de Cliente Especial", () => {
     expect(calcular_descuento_Cliente(260,"Especial")).toEqual(3.9);
+  });
+});
+
+describe("Calculara descuento por el tipo de cliente", () => {
+  it("Calcula el descuento por el tipo de Cliente Normal", () => {
+    expect(calcular_descuento_Cliente(160, "Normal")).toEqual(0);
+  });
+  it("Calcula el descuento por el tipo de Cliente Recurrente", () => {
+    expect(calcular_descuento_Cliente(160, "Recurrente")).toEqual(0.8);
+  });
+  it("Calcula el descuento por el tipo de Cliente Antiguo Recurrente", () => {
+    expect(calcular_descuento_Cliente(260, "Antiguo Recurrente")).toEqual(2.6);
+  });
+  it("Calcula el descuento por el tipo de Cliente Especial", () => {
+    expect(calcular_descuento_Cliente(260, "Especial")).toEqual(3.9);
+  });
+});
+
+describe("Calculara el descuento adicional para cliente Recurrente", () => {
+  it("Descuento de $100 para cliente Recurrente en Alimentos con precio neto > 3000", () => {
+    expect(calcular_descuento_recurrente(3500, "Alimentos")).toEqual(100);
+  });
+  it("No hay descuento para cliente Recurrente en Alimentos con precio neto <= 3000", () => {
+    expect(calcular_descuento_recurrente(2500, "Alimentos")).toEqual(0);
+  });
+  it("No hay descuento para cliente Recurrente en otra categoría", () => {
+    expect(calcular_descuento_recurrente(3500, "Electronicos")).toEqual(0);
+  });
+});
+
+describe("Calculara el descuento adicional para cliente Especial", () => {
+  it("Descuento de $200 para cliente Especial en Electronicos con precio neto > 7000", () => {
+    expect(calcular_descuento_especial(7500, "Electronicos")).toEqual(200);
+  });
+  it("No hay descuento para cliente Especial en Electronicos con precio neto <= 7000", () => {
+    expect(calcular_descuento_especial(6500, "Electronicos")).toEqual(0);
+  });
+  it("No hay descuento para cliente Especial en otra categoría", () => {
+    expect(calcular_descuento_especial(7500, "Alimentos")).toEqual(0);
   });
 });
