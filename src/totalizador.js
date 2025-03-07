@@ -83,7 +83,7 @@ function obtener_porcentaje_descuento_categoria(categoria){
     "Material Escritorio": 0.015,
     "Muebles": 0,
     "Electronicos": 0.01,
-    
+    "Vestimenta": 0,
   };
   return descuento[categoria] || 0;
 }
