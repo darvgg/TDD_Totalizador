@@ -128,7 +128,7 @@ describe("Mostrara el costo del envio", () => {
     expect(resultado1).toContain("Precio del costo de envio (61.4kg.): +$6");
   });
   it("Peso entre 80 a 100 kilos", () => {
-    const resultado1 = mostrar(1, 180.68, "TX", "Varios", 90.5);
-    expect(resultado1).toContain("Precio del costo de envio (90.5kg.): +$6.5");
+    const resultado1 = mostrar(6, 11.60, "TX", "Varios", 20.5);
+    expect(resultado1).toContain("Precio del costo de envio (123kg.): +$8");
   });
 });

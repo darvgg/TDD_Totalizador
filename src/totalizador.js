@@ -115,6 +115,9 @@ function calcular_Costo_Envio(cantidad, pesoItem) {
   else if (pesoVolumetrico >= 80 && pesoVolumetrico <= 100) {
     costo = 6.5;
   }
+  else if (pesoVolumetrico > 100 && pesoVolumetrico <= 200) {
+    costo = 8;
+  }
   return costo;
 }
 
