@@ -142,7 +142,10 @@ describe("Mostrara el costo del envio", () => {
 });
 
 describe("Calculara descuento por el tipo de cliente", () => {
-  it("Calcula el descuento por el tipo de Cliente", () => {
+  it("Calcula el descuento por el tipo de Cliente Normal", () => {
     expect(calcular_descuento_Cliente(160,"Normal")).toEqual(0);
+  });
+  it("Calcula el descuento por el tipo de Cliente Recurrente", () => {
+    expect(calcular_descuento_Cliente(160,"Recurrente")).toEqual(8);
   });
 });
