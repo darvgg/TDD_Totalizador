@@ -1,4 +1,4 @@
-import { mostrar, obtener_precioNeto, calcular_impuesto_estado,calcular_descuento, calcular_Peso_Volumetrico} from "./totalizador.js";
+import { mostrar, obtener_precioNeto, calcular_impuesto_estado,calcular_descuento, calcular_Peso_Volumetrico, calcular_descuento_Cliente} from "./totalizador.js";
 
 describe("Calculara el precio neto del producto", () => {
   it("Calcula la cantidad del producto ingresado", () => {
@@ -138,5 +138,11 @@ describe("Mostrara el costo del envio", () => {
   it("Peso mas de 200 kilos", () => {
     const resultado1 = mostrar(4, 270, "TX", "Electronico", 62.8);
     expect(resultado1).toContain("Precio del costo de envio (251.2kg.): +$9");
+  });
+});
+
+describe("Calculara descuento por el tipo de cliente", () => {
+  it("Calcula el descuento por el tipo de Cliente", () => {
+    expect(calcular_descuento_Cliente(160,"Normal")).toEqual(0);
   });
 });

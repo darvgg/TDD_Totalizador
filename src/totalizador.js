@@ -124,25 +124,40 @@ function calcular_Costo_Envio(cantidad, pesoItem) {
   return costo;
 }
 
+function obtener_Porcentaje_Descuento_Cliente(tipoCliente) {
+  const descuentos = {
+    "Normal": 0,
+  };
+  return descuentos[tipoCliente] || 0;
+}
+
+function calcular_descuento_Cliente(precio_neto, tipo_cliente){
+  let porcentaje_descuento_cliente = obtener_Porcentaje_Descuento_Cliente(tipo_cliente);
+  return parseFloat((precio_neto*porcentaje_descuento_cliente).toFixed(2));
+}
+
 function mostrar(cantidad,precio,cod_estado, categoria, peso_item, tipo_cliente){
   let precio_n = obtener_precioNeto(cantidad,precio);
   let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
   let precio_envio = calcular_Costo_Envio(cantidad,peso_item);
-
+  //Calcula segun el estado
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
   let impuesto_estado= calcular_impuesto_estado(precio_n,cod_estado);
-
+  //Calcula segun la categoria
   let porcentaje_impuesto_categoria = obtener_Porcentaje_Impuesto_Categoria(categoria);
   let impuesto_categoria = calcular_Impuesto_Categoria(precio_n, categoria);
-  
+
   let porcentaje_descuento_categoria = obtener_porcentaje_descuento_categoria(categoria);
   let descuento_categoria = calcular_descuento_categoria(precio_n,categoria);
-  
+  //Descuento segun el precio neto
   let porcentaje_descuento = obtener_porcentaje_descuento(precio_n);
   let descuento = calcular_descuento(precio_n);
+  //Descuento segun el tipo de cliente
+  let porcentaje_descuento_cliente = obtener_Porcentaje_Descuento_Cliente(tipo_cliente);
+  let descuento_cliente = calcular_descuento_Cliente(precio_n,tipo_cliente);
 
   let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
-  let precio_total= precio_con_impuestos + precio_envio - descuento - descuento_categoria;
+  let precio_total= precio_con_impuestos + precio_envio - descuento - descuento_categoria - descuento_cliente;
   
   let mostrar_p = `
     La cantidad es: ${cantidad} <br>
@@ -155,9 +170,10 @@ function mostrar(cantidad,precio,cod_estado, categoria, peso_item, tipo_cliente)
     Impuesto por categoría (${(porcentaje_impuesto_categoria* 100).toFixed(2)}%): +$${impuesto_categoria}<br>
     Descuento (${(porcentaje_descuento* 100).toFixed(2)}%): -$${descuento}<br>
     Descuento Categoria (${(porcentaje_descuento_categoria* 100).toFixed(2)}%): -$${descuento_categoria}<br>
+    Descuento por Tipo de Cliente ${tipo_cliente} (${(porcentaje_descuento_cliente*100).toFixed(2)}%): -$${descuento_cliente}<br>
     Precio total (con descuentos e impuestos): $${precio_total.toFixed(2)}<br>
   `
   return mostrar_p; 
 }
 
-export {obtener_precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar, calcular_Peso_Volumetrico};
+export {obtener_precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar, calcular_Peso_Volumetrico,calcular_descuento_Cliente};
