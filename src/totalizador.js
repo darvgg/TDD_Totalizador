@@ -127,7 +127,8 @@ function calcular_Costo_Envio(cantidad, pesoItem) {
 function obtener_Porcentaje_Descuento_Cliente(tipoCliente) {
   const descuentos = {
     "Normal": 0,
-    "Recurrente":0.005
+    "Recurrente":0.005,
+    "Antiguo Recurrente": 0.01
   };
   return descuentos[tipoCliente] || 0;
 }
