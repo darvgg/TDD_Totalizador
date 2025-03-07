@@ -86,4 +86,8 @@ describe("Calcula el Descuento en en las categorías", () => {
     const resultado1 = mostrar(30, 7, "NV", "Material Escritorio");
     expect(resultado1).toContain("Descuento Categoria (1.50%): -$3.15");
   });
+  it("Categoria Muebles", () => {
+    const resultado1 = mostrar(35, 600, "UT", "Muebles");
+    expect(resultado1).toContain("Descuento Categoria (0.00%): -$0");
+  });
 });
