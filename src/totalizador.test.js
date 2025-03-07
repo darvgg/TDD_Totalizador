@@ -109,3 +109,10 @@ describe("Calculara el peso volumetrico del envio", () => {
     expect(calcular_Peso_Volumetrico(7,5)).toEqual(35);
   });
 });
+
+describe("Mostrara el costo del envio", () => {
+  it("Peso entre 0 a 10 kilos", () => {
+    const resultado1 = mostrar(10, 5, "CA", "Alimentos", 0.15);
+    expect(resultado1).toContain("Precio del costo de envio (1.5kg.): +$0");
+  });
+});

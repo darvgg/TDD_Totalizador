@@ -99,9 +99,19 @@ function calcular_Peso_Volumetrico(cantidad, pesoItem) {
   return parseFloat((cantidad * pesoItem).toFixed(2));
 }
 
+function calcular_Costo_Envio(cantidad, pesoItem) {
+  let costo=0;
+  let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, pesoItem);
+  if (0 < pesoVolumetrico <= 10){ 
+    costo= 0;
+  }
+  return costo;
+}
+
 function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
   let precio_n = obtener_precioNeto(cantidad,precio);
-  let peso_volumetrico = calcular_Peso_Volumetrico(cantidad,peso_item);
+  let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
+  let precio_envio = calcular_Costo_Envio(cantidad,peso_item);
 
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
   let impuesto_estado= calcular_impuesto_estado(precio_n,cod_estado);
@@ -123,7 +133,8 @@ function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
     El precio por unidad es: ${precio} <br>
     Categoria del item: ${categoria} <br>
     Codigo de estado es: ${cod_estado} <br>
-    Precio neto (${cantidad} * $${precio.toFixed(2)}): $${precio_n.toFixed(2)}<br>
+    Precio neto del producto: (${cantidad} * $${precio.toFixed(2)}): $${precio_n.toFixed(2)}<br>
+    Precio del costo de envio (${pesoVolumetrico}kg.): +$${precio_envio}<br>
     Impuesto para ${cod_estado} (${(porcentaje_impuesto_estado * 100).toFixed(2)}%): +$${impuesto_estado}<br>
     Impuesto por categoría (${(porcentaje_impuesto_categoria* 100).toFixed(2)}%): +$${impuesto_categoria}<br>
     Descuento (${(porcentaje_descuento* 100).toFixed(2)}%): -$${descuento}<br>
