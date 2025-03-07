@@ -95,8 +95,13 @@ function calcular_descuento_categoria (precio, categoria){
   return parseFloat(descuento_categoria.toFixed(2));
 }
 
+function calcular_Peso_Volumetrico(cantidad, pesoItem) {
+  return parseFloat((cantidad * pesoItem).toFixed(2));
+}
+
 function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
   let precio_n = obtener_precioNeto(cantidad,precio);
+  let peso_volumetrico = calcular_Peso_Volumetrico(cantidad,peso_item);
 
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
   let impuesto_estado= calcular_impuesto_estado(precio_n,cod_estado);
@@ -128,4 +133,4 @@ function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
   return mostrar_p; 
 }
 
-export {obtener_precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar};
+export {obtener_precioNeto, calcular_impuesto_estado,calcular_descuento,mostrar, calcular_Peso_Volumetrico};

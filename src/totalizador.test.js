@@ -1,7 +1,7 @@
-import { mostrar, obtener_precioNeto, calcular_impuesto_estado,calcular_descuento} from "./totalizador.js";
+import { mostrar, obtener_precioNeto, calcular_impuesto_estado,calcular_descuento, calcular_Peso_Volumetrico} from "./totalizador.js";
 
-describe("Mostrara el precio neto del producto", () => {
-  it("Muestra la cantidad del producto ingresado", () => {
+describe("Calculara el precio neto del producto", () => {
+  it("Calcula la cantidad del producto ingresado", () => {
     expect(obtener_precioNeto(7,5)).toEqual(35);
   });
 });
@@ -101,5 +101,11 @@ describe("Calcula el Descuento en en las categorías", () => {
   it("Categoria Varios", () => {
     const resultado1 = mostrar(140, 64.50, "UT", "Varios");
     expect(resultado1).toContain("Descuento Categoria (0.00%): -$0");
+  });
+});
+
+describe("Calculara el peso volumetrico del envio", () => {
+  it("Calcula el peso volumetrico del envio", () => {
+    expect(calcular_Peso_Volumetrico(7,5)).toEqual(35);
   });
 });
