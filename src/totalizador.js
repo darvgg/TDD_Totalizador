@@ -95,7 +95,7 @@ function calcular_descuento_categoria (precio, categoria){
   return parseFloat(descuento_categoria.toFixed(2));
 }
 
-function mostrar(cantidad,precio,cod_estado, categoria){
+function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
   let precio_n = obtener_precioNeto(cantidad,precio);
 
   let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
