@@ -90,4 +90,8 @@ describe("Calcula el Descuento en en las categorías", () => {
     const resultado1 = mostrar(35, 600, "UT", "Muebles");
     expect(resultado1).toContain("Descuento Categoria (0.00%): -$0");
   });
+  it("Categoria Electronicos", () => {
+    const resultado1 = mostrar(5, 1090, "TX", "Electronicos");
+    expect(resultado1).toContain("Descuento Categoria (1.00%): -$54.5");
+  });
 });

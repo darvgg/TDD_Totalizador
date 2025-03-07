@@ -82,6 +82,7 @@ function obtener_porcentaje_descuento_categoria(categoria){
     "Bebidas Alcoholicas": 0,
     "Material Escritorio": 0.015,
     "Muebles": 0,
+    "Electronicos": 0.01,
     
   };
   return descuento[categoria] || 0;
