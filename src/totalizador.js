@@ -124,7 +124,7 @@ function calcular_Costo_Envio(cantidad, pesoItem) {
   return costo;
 }
 
-function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
+function mostrar(cantidad,precio,cod_estado, categoria, peso_item, tipo_cliente){
   let precio_n = obtener_precioNeto(cantidad,precio);
   let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
   let precio_envio = calcular_Costo_Envio(cantidad,peso_item);
