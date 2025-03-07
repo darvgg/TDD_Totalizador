@@ -119,4 +119,8 @@ describe("Mostrara el costo del envio", () => {
     const resultado1 = mostrar(100, 15, "TX", "Bebidas Alcoholicas", 0.2);
     expect(resultado1).toContain("Precio del costo de envio (20kg.): +$3.5");
   });
+  it("Peso entre 21 a 40 kilos", () => {
+    const resultado1 = mostrar(4, 8, "TX", "Varios", 8.1);
+    expect(resultado1).toContain("Precio del costo de envio (32.4kg.): +$5");
+  });
 });

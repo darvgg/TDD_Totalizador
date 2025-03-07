@@ -106,6 +106,8 @@ function calcular_Costo_Envio(cantidad, pesoItem) {
     costo = 0;
   } else if (pesoVolumetrico > 10 && pesoVolumetrico <= 20) {
     costo = 3.5;
+  } else if (pesoVolumetrico > 20 && pesoVolumetrico <= 40) {
+    costo = 5;
   }
   return costo;
 }
