@@ -151,4 +151,7 @@ describe("Calculara descuento por el tipo de cliente", () => {
   it("Calcula el descuento por el tipo de Cliente Antiguo Recurrente", () => {
     expect(calcular_descuento_Cliente(260,"Antiguo Recurrente")).toEqual(2.6);
   });
+  it("Calcula el descuento por el tipo de Cliente Especial", () => {
+    expect(calcular_descuento_Cliente(260,"Especial")).toEqual(3.9);
+  });
 });

@@ -128,7 +128,8 @@ function obtener_Porcentaje_Descuento_Cliente(tipoCliente) {
   const descuentos = {
     "Normal": 0,
     "Recurrente":0.005,
-    "Antiguo Recurrente": 0.01
+    "Antiguo Recurrente": 0.01,
+    "Especial":0.015
   };
   return descuentos[tipoCliente] || 0;
 }
