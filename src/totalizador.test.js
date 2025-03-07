@@ -98,4 +98,8 @@ describe("Calcula el Descuento en en las categorías", () => {
     const resultado1 = mostrar(120, 90, "TX", "Vestimenta");
     expect(resultado1).toContain("Descuento Categoria (0.00%): -$0");
   });
+  it("Categoria Varios", () => {
+    const resultado1 = mostrar(140, 64.50, "UT", "Varios");
+    expect(resultado1).toContain("Descuento Categoria (0.00%): -$0");
+  });
 });

@@ -84,6 +84,7 @@ function obtener_porcentaje_descuento_categoria(categoria){
     "Muebles": 0,
     "Electronicos": 0.01,
     "Vestimenta": 0,
+    "Varios": 0
   };
   return descuento[categoria] || 0;
 }
