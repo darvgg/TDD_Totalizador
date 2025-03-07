@@ -80,6 +80,7 @@ function obtener_porcentaje_descuento_categoria(categoria){
   const descuento = {
     "Alimentos": 0.02,
     "Bebidas Alcoholicas": 0,
+    "Material Escritorio": 0.015,
   };
   return descuento[categoria] || 0;
 }
@@ -117,7 +118,7 @@ function mostrar(cantidad,precio,cod_estado, categoria){
     Impuesto para ${cod_estado} (${(porcentaje_impuesto_estado * 100).toFixed(2)}%): +$${impuesto_estado}<br>
     Impuesto por categoría (${(porcentaje_impuesto_categoria* 100).toFixed(2)}%): +$${impuesto_categoria}<br>
     Descuento (${(porcentaje_descuento* 100).toFixed(2)}%): -$${descuento}<br>
-    Descuento Categoria(${(porcentaje_descuento_categoria* 100).toFixed(2)}%): -$${descuento_categoria}<br>
+    Descuento Categoria (${(porcentaje_descuento_categoria* 100).toFixed(2)}%): -$${descuento_categoria}<br>
     Precio total (con descuentos e impuestos): $${precio_total.toFixed(2)}<br>
   `
   return mostrar_p; 
