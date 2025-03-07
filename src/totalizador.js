@@ -79,7 +79,7 @@ function calcular_Impuesto_Categoria(precio, categoria) {
 function obtener_porcentaje_descuento_categoria(categoria){
   const descuento = {
     "Alimentos": 0.02,
-
+    "Bebidas Alcoholicas": 0,
   };
   return descuento[categoria] || 0;
 }

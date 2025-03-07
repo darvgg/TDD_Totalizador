@@ -78,5 +78,8 @@ describe("Calcula el Descuento en en las categorías", () => {
     const resultado1 = mostrar(10, 5, "CA", "Alimentos");
     expect(resultado1).toContain("Descuento Categoria(2.00%): -$1");
   });
- 
+  it("Categoria Bebidas Alcoholicas", () => {
+    const resultado1 = mostrar(20, 5, "AL", "Bebidas Alcoholicas");
+    expect(resultado1).toContain("Descuento Categoria(0.00%): -$0");
+  });
 });
