@@ -114,5 +114,9 @@ describe("Mostrara el costo del envio", () => {
   it("Peso entre 0 a 10 kilos", () => {
     const resultado1 = mostrar(10, 5, "CA", "Alimentos", 0.15);
     expect(resultado1).toContain("Precio del costo de envio (1.5kg.): +$0");
+  });  
+  it("Peso entre 11 a 20 kilos", () => {
+    const resultado1 = mostrar(100, 15, "TX", "Bebidas Alcoholicas", 0.2);
+    expect(resultado1).toContain("Precio del costo de envio (20kg.): +$3.5");
   });
 });

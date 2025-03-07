@@ -102,8 +102,10 @@ function calcular_Peso_Volumetrico(cantidad, pesoItem) {
 function calcular_Costo_Envio(cantidad, pesoItem) {
   let costo=0;
   let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, pesoItem);
-  if (0 < pesoVolumetrico <= 10){ 
-    costo= 0;
+  if (pesoVolumetrico > 0 && pesoVolumetrico <= 10) { 
+    costo = 0;
+  } else if (pesoVolumetrico > 10 && pesoVolumetrico <= 20) {
+    costo = 3.5;
   }
   return costo;
 }
@@ -126,7 +128,7 @@ function mostrar(cantidad,precio,cod_estado, categoria, peso_item){
   let descuento = calcular_descuento(precio_n);
 
   let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
-  let precio_total= precio_con_impuestos - descuento - descuento_categoria;
+  let precio_total= precio_con_impuestos + precio_envio - descuento - descuento_categoria;
   
   let mostrar_p = `
     La cantidad es: ${cantidad} <br>
