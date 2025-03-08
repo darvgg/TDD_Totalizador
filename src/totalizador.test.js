@@ -199,4 +199,7 @@ describe("Validadcion de datos al enviar a la funcion mostrar", () => {
   it("Muestra mensaje de Error al enviar una cantidad negativa", () => {
     expect(mostrar(-12, 15.50,"TX", "Alimentos", 0.2, "Recurrente" )).toEqual("Error: Se ingresaron datos negativos");
   });
+  it("Muestra mensaje de Error al enviar un precio negativo", () => {
+    expect(mostrar(12, -15.50,"CA", "Alimentos", 0.2, "Recurrente" )).toEqual("Error: Se ingresaron datos negativos");
+  });
 });

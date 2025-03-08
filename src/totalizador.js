@@ -155,9 +155,9 @@ function calcular_descuento_especial(precio_neto, categoria) {
 }
 
 function validar_datos(cantidad, precio, peso_item){
-  let es_correcto = false;
-  if(cantidad > 0){
-    es_correcto = true;
+  let es_correcto = true;
+  if(cantidad < 0 || precio < 0){
+    es_correcto = false;
   }
   return es_correcto;
 }
