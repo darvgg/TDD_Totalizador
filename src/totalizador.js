@@ -156,7 +156,7 @@ function calcular_descuento_especial(precio_neto, categoria) {
 
 function validar_datos(cantidad, precio, peso_item){
   let es_correcto = true;
-  if(cantidad < 0 || precio < 0){
+  if(cantidad < 0 || precio < 0 || peso_item < 0){
     es_correcto = false;
   }
   return es_correcto;
@@ -164,7 +164,7 @@ function validar_datos(cantidad, precio, peso_item){
 
 function mostrar(cantidad, precio, cod_estado, categoria, peso_item, tipo_cliente) {
   let mostrar_p = "";
-  if (validar_datos(cantidad, precio, cod_estado, categoria, peso_item, tipo_cliente)){  
+  if (validar_datos(cantidad, precio, peso_item)){  
     let precio_n = obtener_precioNeto(cantidad, precio);
     let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
     let precio_envio = calcular_Costo_Envio(cantidad, peso_item);
