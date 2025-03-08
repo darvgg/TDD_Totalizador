@@ -156,7 +156,7 @@ function calcular_descuento_especial(precio_neto, categoria) {
 
 function validar_datos(cantidad, precio, peso_item){
   let es_correcto = true;
-  if(cantidad < 0 || precio < 0 || peso_item < 0){
+  if(cantidad <= 0 || precio <= 0 || peso_item <= 0){
     es_correcto = false;
   }
   return es_correcto;
@@ -213,7 +213,7 @@ function mostrar(cantidad, precio, cod_estado, categoria, peso_item, tipo_client
     `;
   }
   else{
-    mostrar_p = "Error: Se ingresaron datos negativos";
+    mostrar_p = "Error: Se ingresaron datos erroneos";
   }
   return mostrar_p;
 }
