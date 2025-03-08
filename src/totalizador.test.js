@@ -194,3 +194,9 @@ describe("Calculara el descuento adicional para cliente Especial", () => {
     expect(calcular_descuento_especial(7500, "Alimentos")).toEqual(0);
   });
 });
+
+describe("Validadcion de datos al enviar a la funcion mostrar", () => {
+  it("Muestra mensaje de Error al enviar una cantidad negativa", () => {
+    expect(mostrar(-12, 15.50,"TX", "Alimentos", 0.2, "Recurrente" )).toEqual("Error: Se ingresaron datos negativos");
+  });
+});

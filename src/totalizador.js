@@ -154,38 +154,48 @@ function calcular_descuento_especial(precio_neto, categoria) {
   return 0;
 }
 
+function validar_datos(cantidad, precio, peso_item){
+  let es_correcto = false;
+  if(cantidad > 0){
+    es_correcto = true;
+  }
+  return es_correcto;
+}
+
 function mostrar(cantidad, precio, cod_estado, categoria, peso_item, tipo_cliente) {
-  let precio_n = obtener_precioNeto(cantidad, precio);
-  let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
-  let precio_envio = calcular_Costo_Envio(cantidad, peso_item);
+  let mostrar_p = "";
+  if (validar_datos(cantidad, precio, cod_estado, categoria, peso_item, tipo_cliente)){  
+    let precio_n = obtener_precioNeto(cantidad, precio);
+    let pesoVolumetrico = calcular_Peso_Volumetrico(cantidad, peso_item);
+    let precio_envio = calcular_Costo_Envio(cantidad, peso_item);
 
-  // Calcula según el estado
-  let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
-  let impuesto_estado = calcular_impuesto_estado(precio_n, cod_estado);
+    // Calcula según el estado
+    let porcentaje_impuesto_estado = obtener_porcentaje_impuesto_estado(cod_estado);
+    let impuesto_estado = calcular_impuesto_estado(precio_n, cod_estado);
 
-  // Calcula según la categoría
-  let porcentaje_impuesto_categoria = obtener_Porcentaje_Impuesto_Categoria(categoria);
-  let impuesto_categoria = calcular_Impuesto_Categoria(precio_n, categoria);
+    // Calcula según la categoría
+    let porcentaje_impuesto_categoria = obtener_Porcentaje_Impuesto_Categoria(categoria);
+    let impuesto_categoria = calcular_Impuesto_Categoria(precio_n, categoria);
 
-  let porcentaje_descuento_categoria = obtener_porcentaje_descuento_categoria(categoria);
-  let descuento_categoria = calcular_descuento_categoria(precio_n, categoria);
+    let porcentaje_descuento_categoria = obtener_porcentaje_descuento_categoria(categoria);
+    let descuento_categoria = calcular_descuento_categoria(precio_n, categoria);
 
-  // Descuento según el precio neto
-  let porcentaje_descuento = obtener_porcentaje_descuento(precio_n);
-  let descuento = calcular_descuento(precio_n);
+    // Descuento según el precio neto
+    let porcentaje_descuento = obtener_porcentaje_descuento(precio_n);
+    let descuento = calcular_descuento(precio_n);
 
-  // Descuento según el tipo de cliente
-  let porcentaje_descuento_cliente = obtener_Porcentaje_Descuento_Cliente(tipo_cliente);
-  let descuento_cliente = calcular_descuento_Cliente(precio_n, tipo_cliente);
+    // Descuento según el tipo de cliente
+    let porcentaje_descuento_cliente = obtener_Porcentaje_Descuento_Cliente(tipo_cliente);
+    let descuento_cliente = calcular_descuento_Cliente(precio_n, tipo_cliente);
 
-  // Descuentos adicionales para clientes Recurrentes y Especiales
-  let descuento_recurrente = calcular_descuento_recurrente(precio_n, categoria);
-  let descuento_especial = calcular_descuento_especial(precio_n, categoria);
+    // Descuentos adicionales para clientes Recurrentes y Especiales
+    let descuento_recurrente = calcular_descuento_recurrente(precio_n, categoria);
+    let descuento_especial = calcular_descuento_especial(precio_n, categoria);
 
-  let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
-  let precio_total = precio_con_impuestos + precio_envio - descuento - descuento_categoria - descuento_cliente - descuento_recurrente - descuento_especial;
+    let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
+    let precio_total = precio_con_impuestos + precio_envio - descuento - descuento_categoria - descuento_cliente - descuento_recurrente - descuento_especial;
 
-  let mostrar_p = `
+    mostrar_p = `
     La cantidad es: ${cantidad} <br>
     El precio por unidad es: ${precio} <br>
     Categoría del item: ${categoria} <br>
@@ -200,7 +210,11 @@ function mostrar(cantidad, precio, cod_estado, categoria, peso_item, tipo_client
     Descuento adicional para Cliente Recurrente: -$${descuento_recurrente.toFixed(2)}<br>
     Descuento adicional para Cliente Especial: -$${descuento_especial.toFixed(2)}<br>
     Precio total (con descuentos e impuestos): $${precio_total.toFixed(2)}<br>
-  `;
+    `;
+  }
+  else{
+    mostrar_p = "Error: Se ingresaron datos negativos";
+  }
   return mostrar_p;
 }
 export { obtener_precioNeto, calcular_impuesto_estado, calcular_descuento, mostrar, calcular_Peso_Volumetrico, calcular_descuento_Cliente,calcular_descuento_recurrente, calcular_descuento_especial}
