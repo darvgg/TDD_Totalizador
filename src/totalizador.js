@@ -139,19 +139,21 @@ function calcular_descuento_Cliente(precio_neto, tipo_cliente){
   return parseFloat((precio_neto*porcentaje_descuento_cliente).toFixed(2));
 }
 
-function calcular_descuento_recurrente(precio_neto, categoria) {
-  if (categoria === "Alimentos" && precio_neto > 3000) {
-    return 100;
+function calcular_descuento_recurrente(precio_neto, categoria, tipo_cliente) {
+  let valor=0;
+  if ((categoria === "Alimentos" && tipo_cliente =="Recurrente") && precio_neto > 3000) {
+    valor= 100;
   }
-  return 0;
+  return valor;
 }
 
 // Nueva función para calcular el descuento de cliente Especial
-function calcular_descuento_especial(precio_neto, categoria) {
-  if (categoria === "Electronicos" && precio_neto > 7000) {
-    return 200;
+function calcular_descuento_especial(precio_neto, categoria,tipo_cliente) {
+  let valor=0;
+  if ((categoria === "Electronicos" && tipo_cliente == "Especial")&& precio_neto > 7000) {
+    valor= 200;
   }
-  return 0;
+  return valor;
 }
 
 function validar_datos(cantidad, precio, peso_item){
@@ -189,8 +191,8 @@ function mostrar(cantidad, precio, cod_estado, categoria, peso_item, tipo_client
     let descuento_cliente = calcular_descuento_Cliente(precio_n, tipo_cliente);
 
     // Descuentos adicionales para clientes Recurrentes y Especiales
-    let descuento_recurrente = calcular_descuento_recurrente(precio_n, categoria);
-    let descuento_especial = calcular_descuento_especial(precio_n, categoria);
+    let descuento_recurrente = calcular_descuento_recurrente(precio_n, categoria,tipo_cliente);
+    let descuento_especial = calcular_descuento_especial(precio_n, categoria,tipo_cliente);
 
     let precio_con_impuestos = precio_n + impuesto_estado + impuesto_categoria;
     let precio_total = precio_con_impuestos + precio_envio - descuento - descuento_categoria - descuento_cliente - descuento_recurrente - descuento_especial;

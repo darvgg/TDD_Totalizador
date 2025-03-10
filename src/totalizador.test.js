@@ -173,25 +173,25 @@ describe("Calculara descuento por el tipo de cliente", () => {
 
 describe("Calculara el descuento adicional para cliente Recurrente", () => {
   it("Descuento de $100 para cliente Recurrente en Alimentos con precio neto > 3000", () => {
-    expect(calcular_descuento_recurrente(3500, "Alimentos")).toEqual(100);
+    expect(calcular_descuento_recurrente(3500, "Alimentos", "Recurrente")).toEqual(100);
   });
   it("No hay descuento para cliente Recurrente en Alimentos con precio neto <= 3000", () => {
-    expect(calcular_descuento_recurrente(2500, "Alimentos")).toEqual(0);
+    expect(calcular_descuento_recurrente(2500, "Alimentos", "Recurrente")).toEqual(0);
   });
   it("No hay descuento para cliente Recurrente en otra categoría", () => {
-    expect(calcular_descuento_recurrente(3500, "Electronicos")).toEqual(0);
+    expect(calcular_descuento_recurrente(3500, "Electronicos", "Recurrente")).toEqual(0);
   });
 });
 
 describe("Calculara el descuento adicional para cliente Especial", () => {
   it("Descuento de $200 para cliente Especial en Electronicos con precio neto > 7000", () => {
-    expect(calcular_descuento_especial(7500, "Electronicos")).toEqual(200);
+    expect(calcular_descuento_especial(7500, "Electronicos", "Especial")).toEqual(200);
   });
   it("No hay descuento para cliente Especial en Electronicos con precio neto <= 7000", () => {
-    expect(calcular_descuento_especial(6500, "Electronicos")).toEqual(0);
+    expect(calcular_descuento_especial(6500, "Electronicos", "Especial")).toEqual(0);
   });
   it("No hay descuento para cliente Especial en otra categoría", () => {
-    expect(calcular_descuento_especial(7500, "Alimentos")).toEqual(0);
+    expect(calcular_descuento_especial(7500, "Alimentos", "Especial")).toEqual(0);
   });
 });
 
