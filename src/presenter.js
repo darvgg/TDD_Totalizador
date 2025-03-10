@@ -20,5 +20,18 @@ form.addEventListener("submit", (event) => {
   const categoria = categoria_select.value;
   const pesoItem = Number.parseFloat(peso_item.value);
 
-  div.innerHTML = "<p>" + mostrar(cantItem, precioItem, cod_estado, categoria, pesoItem, tipo_cliente) + "</p>";
+    // Validación de entrada
+    if (isNaN(cantItem) || isNaN(precioItem) || isNaN(pesoItem)) {
+      div.innerHTML = "<p>Error: Se ingresaron datos erroneos.</p>";
+      return;
+    }
+  
+    // Verificar si mostrar() está definida correctamente
+    try {
+      const resultado = mostrar(cantItem, precioItem, cod_estado, categoria, pesoItem, tipo_cliente);
+      div.innerHTML = `<p>${resultado}</p>`;
+    } catch (error) {
+      console.error("Error al ejecutar la función mostrar():", error);
+      div.innerHTML = "<p'>Hubo un error al calcular el total.</p>";
+    }
 });
